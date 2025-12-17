@@ -1,0 +1,2263 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+frontend/
+  src/
+    assets/
+      fonts/
+        nunito-v16-latin-regular.woff2
+        OFL.txt
+      images/
+        logo-universal.png
+    components/
+      extra/
+        AnalyticsPlatform.jsx
+        MarketData.jsx
+        MarketOverview.jsx
+        MiniChart.jsx
+        News.jsx
+        Screener.jsx
+        StockMarket.jsx
+        SymbolOverview.jsx
+        TickerTape.jsx
+      AdvancedChart.jsx
+      comps.css
+      Screener.jsx
+      Titlebar.jsx
+    App.css
+    App.jsx
+    main.jsx
+    style.css
+  wailsjs/
+    go/
+      main/
+        App.d.ts
+        App.js
+      models.ts
+    runtime/
+      package.json
+      runtime.d.ts
+      runtime.js
+  index.html
+  package.json
+  package.json.md5
+  vite.config.js
+.gitignore
+app.go
+appicon.png
+dockConfig.json
+go.mod
+LICENSE
+main.go
+README.md
+wails.json
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="dockConfig.json">
+{
+  "symbol": "NASDAQ:AAPL",
+  "theme": "dark"
+}
+</file>
+
+<file path="frontend/src/assets/fonts/OFL.txt">
+Copyright 2016 The Nunito Project Authors (contact@sansoxygen.com),
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+http://scripts.sil.org/OFL
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+</file>
+
+<file path="frontend/src/components/extra/AnalyticsPlatform.jsx">
+// TradingViewWidget.jsx
+	import React, { useEffect, useRef, memo } from 'react';
+
+	function TradingViewWidget() {
+	  const container = useRef();
+
+	  useEffect(
+		() => {
+		  const script = document.createElement("script");
+		  script.src = "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+		  script.type = "text/javascript";
+		  script.async = true;
+		  script.innerHTML = `
+			{
+			  "autosize": true,
+			  "symbol": "NASDAQ:AAPL",
+			  "interval": "D",
+			  "timezone": "exchange",
+			  "theme": "light",
+			  "style": "0",
+			  "locale": "en",
+			  "allow_symbol_change": true,
+			  "calendar": false,
+			  "withdateranges": true,
+			  "allow_symbol_change": true,
+			  "save_image": false,
+			  "details": true,
+			  "hotlist": true,
+			  "calendar": false,
+			  "support_host": "https://www.tradingview.com"
+			}`;
+		  container.current.appendChild(script);
+		},
+		[]
+	  );
+
+	  return (
+		<div className="tradingview-widget-container" ref={container} style={{ height: "100%", width: "100%" }}>
+		  <div className="tradingview-widget-container__widget" style={{ height: "calc(100% - 32px)", width: "100%" }}></div>
+		  <div className="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener nofollow" target="_blank"><span className="blue-text">AAPL stock chart</span></a><span className="trademark"> by TradingView</span></div>
+		</div>
+	  );
+	}
+
+	export default memo(TradingViewWidget);
+</file>
+
+<file path="frontend/src/components/extra/MarketData.jsx">
+// TradingViewWidget.jsx
+import React, { useEffect, useRef, memo } from 'react';
+
+function TradingViewWidget() {
+  const container = useRef();
+
+  useEffect(
+    () => {
+      const script = document.createElement("script");
+      script.src = "https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js";
+      script.type = "text/javascript";
+      script.async = true;
+      script.innerHTML = `
+        {
+          "colorTheme": "dark",
+          "locale": "en",
+          "largeChartUrl": "",
+          "isTransparent": false,
+          "showSymbolLogo": true,
+          "backgroundColor": "#0F0F0F",
+          "support_host": "https://www.tradingview.com",
+          "width": 550,
+          "height": 550,
+          "symbolsGroups": [
+            {
+              "name": "Indices",
+              "symbols": [
+                {
+                  "name": "FOREXCOM:SPXUSD",
+                  "displayName": "S&P 500 Index"
+                },
+                {
+                  "name": "FOREXCOM:NSXUSD",
+                  "displayName": "US 100 Cash CFD"
+                },
+                {
+                  "name": "FOREXCOM:DJI",
+                  "displayName": "Dow Jones Industrial Average Index"
+                },
+                {
+                  "name": "INDEX:NKY",
+                  "displayName": "Japan 225"
+                },
+                {
+                  "name": "INDEX:DEU40",
+                  "displayName": "DAX Index"
+                },
+                {
+                  "name": "FOREXCOM:UKXGBP",
+                  "displayName": "FTSE 100 Index"
+                }
+              ]
+            },
+            {
+              "name": "Futures",
+              "symbols": [
+                {
+                  "name": "BMFBOVESPA:ISP1!",
+                  "displayName": "S&P 500"
+                },
+                {
+                  "name": "BMFBOVESPA:EUR1!",
+                  "displayName": "Euro"
+                },
+                {
+                  "name": "CMCMARKETS:GOLD",
+                  "displayName": "Gold"
+                },
+                {
+                  "name": "PYTH:WTI3!",
+                  "displayName": "WTI Crude Oil"
+                },
+                {
+                  "name": "BMFBOVESPA:CCM1!",
+                  "displayName": "Corn"
+                }
+              ]
+            },
+            {
+              "name": "Bonds",
+              "symbols": [
+                {
+                  "name": "EUREX:FGBL1!",
+                  "displayName": "Euro Bund"
+                },
+                {
+                  "name": "EUREX:FBTP1!",
+                  "displayName": "Euro BTP"
+                },
+                {
+                  "name": "EUREX:FGBM1!",
+                  "displayName": "Euro BOBL"
+                }
+              ]
+            },
+            {
+              "name": "Forex",
+              "symbols": [
+                {
+                  "name": "FX:EURUSD",
+                  "displayName": "EUR to USD"
+                },
+                {
+                  "name": "FX:GBPUSD",
+                  "displayName": "GBP to USD"
+                },
+                {
+                  "name": "FX:USDJPY",
+                  "displayName": "USD to JPY"
+                },
+                {
+                  "name": "FX:USDCHF",
+                  "displayName": "USD to CHF"
+                },
+                {
+                  "name": "FX:AUDUSD",
+                  "displayName": "AUD to USD"
+                },
+                {
+                  "name": "FX:USDCAD",
+                  "displayName": "USD to CAD"
+                }
+              ]
+            }
+          ]
+        }`;
+      container.current.appendChild(script);
+    },
+    []
+  );
+
+  return (
+    <div className="tradingview-widget-container" ref={container}>
+      <div className="tradingview-widget-container__widget"></div>
+      <div className="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/" rel="noopener nofollow" target="_blank"><span className="blue-text">Market summary</span></a><span className="trademark"> by TradingView</span></div>
+    </div>
+  );
+}
+
+export default memo(TradingViewWidget);
+</file>
+
+<file path="frontend/src/components/extra/MarketOverview.jsx">
+// TradingViewWidget.jsx
+import React, { useEffect, useRef, memo } from 'react';
+
+function TradingViewWidget() {
+  const container = useRef();
+
+  useEffect(
+    () => {
+      const script = document.createElement("script");
+      script.src = "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js";
+      script.type = "text/javascript";
+      script.async = true;
+      script.innerHTML = `
+        {
+          "colorTheme": "dark",
+          "dateRange": "12M",
+          "locale": "en",
+          "largeChartUrl": "",
+          "isTransparent": false,
+          "showFloatingTooltip": false,
+          "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
+          "plotLineColorFalling": "rgba(41, 98, 255, 1)",
+          "gridLineColor": "rgba(240, 243, 250, 0)",
+          "scaleFontColor": "#DBDBDB",
+          "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
+          "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
+          "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
+          "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+          "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
+          "tabs": [
+            {
+              "title": "Indices",
+              "symbols": [
+                {
+                  "s": "FOREXCOM:SPXUSD",
+                  "d": "S&P 500 Index"
+                },
+                {
+                  "s": "FOREXCOM:NSXUSD",
+                  "d": "US 100 Cash CFD"
+                },
+                {
+                  "s": "FOREXCOM:DJI",
+                  "d": "Dow Jones Industrial Average Index"
+                },
+                {
+                  "s": "INDEX:NKY",
+                  "d": "Japan 225"
+                },
+                {
+                  "s": "INDEX:DEU40",
+                  "d": "DAX Index"
+                },
+                {
+                  "s": "FOREXCOM:UKXGBP",
+                  "d": "FTSE 100 Index"
+                }
+              ],
+              "originalTitle": "Indices"
+            },
+            {
+              "title": "Futures",
+              "symbols": [
+                {
+                  "s": "BMFBOVESPA:ISP1!",
+                  "d": "S&P 500"
+                },
+                {
+                  "s": "BMFBOVESPA:EUR1!",
+                  "d": "Euro"
+                },
+                {
+                  "s": "CMCMARKETS:GOLD",
+                  "d": "Gold"
+                },
+                {
+                  "s": "PYTH:WTI3!",
+                  "d": "WTI Crude Oil"
+                },
+                {
+                  "s": "BMFBOVESPA:CCM1!",
+                  "d": "Corn"
+                }
+              ],
+              "originalTitle": "Futures"
+            },
+            {
+              "title": "Bonds",
+              "symbols": [
+                {
+                  "s": "EUREX:FGBL1!",
+                  "d": "Euro Bund"
+                },
+                {
+                  "s": "EUREX:FBTP1!",
+                  "d": "Euro BTP"
+                },
+                {
+                  "s": "EUREX:FGBM1!",
+                  "d": "Euro BOBL"
+                }
+              ],
+              "originalTitle": "Bonds"
+            },
+            {
+              "title": "Forex",
+              "symbols": [
+                {
+                  "s": "FX:EURUSD",
+                  "d": "EUR to USD"
+                },
+                {
+                  "s": "FX:GBPUSD",
+                  "d": "GBP to USD"
+                },
+                {
+                  "s": "FX:USDJPY",
+                  "d": "USD to JPY"
+                },
+                {
+                  "s": "FX:USDCHF",
+                  "d": "USD to CHF"
+                },
+                {
+                  "s": "FX:AUDUSD",
+                  "d": "AUD to USD"
+                },
+                {
+                  "s": "FX:USDCAD",
+                  "d": "USD to CAD"
+                }
+              ],
+              "originalTitle": "Forex"
+            }
+          ],
+          "support_host": "https://www.tradingview.com",
+          "backgroundColor": "#0f0f0f",
+          "width": "400",
+          "height": "550",
+          "showSymbolLogo": true,
+          "showChart": true
+        }`;
+      container.current.appendChild(script);
+    },
+    []
+  );
+
+  return (
+    <div className="tradingview-widget-container" ref={container}>
+      <div className="tradingview-widget-container__widget"></div>
+      <div className="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/" rel="noopener nofollow" target="_blank"><span className="blue-text">Market summary</span></a><span className="trademark"> by TradingView</span></div>
+    </div>
+  );
+}
+
+export default memo(TradingViewWidget);
+</file>
+
+<file path="frontend/src/components/extra/MiniChart.jsx">
+// TradingViewWidget.jsx
+import React, { useEffect, useRef, memo } from 'react';
+
+function TradingViewWidget() {
+  const container = useRef();
+
+  useEffect(
+    () => {
+      const script = document.createElement("script");
+      script.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";
+      script.type = "text/javascript";
+      script.async = true;
+      script.innerHTML = `
+        {
+          "symbol": "NASDAQ:AAPL",
+          "chartOnly": false,
+          "dateRange": "12M",
+          "noTimeScale": false,
+          "colorTheme": "dark",
+          "isTransparent": false,
+          "locale": "en",
+          "width": "100%",
+          "autosize": true,
+          "height": "100%"
+        }`;
+      container.current.appendChild(script);
+    },
+    []
+  );
+
+  return (
+    <div className="tradingview-widget-container" ref={container}>
+      <div className="tradingview-widget-container__widget"></div>
+      <div className="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener nofollow" target="_blank"><span className="blue-text">AAPL stock price</span></a><span className="trademark"> by TradingView</span></div>
+    </div>
+  );
+}
+
+export default memo(TradingViewWidget);
+</file>
+
+<file path="frontend/src/components/extra/News.jsx">
+// TradingViewWidget.jsx
+import React, { useEffect, useRef, memo } from 'react';
+
+function TradingViewWidget() {
+  const container = useRef();
+
+  useEffect(
+    () => {
+      const script = document.createElement("script");
+      script.src = "https://s3.tradingview.com/external-embedding/embed-widget-timeline.js";
+      script.type = "text/javascript";
+      script.async = true;
+      script.innerHTML = `
+        {
+          "displayMode": "regular",
+          "feedMode": "all_symbols",
+          "colorTheme": "dark",
+          "isTransparent": false,
+          "locale": "en",
+          "width": 400,
+          "height": 550
+        }`;
+      container.current.appendChild(script);
+    },
+    []
+  );
+
+  return (
+    <div className="tradingview-widget-container" ref={container}>
+      <div className="tradingview-widget-container__widget"></div>
+      <div className="tradingview-widget-copyright"><a href="https://www.tradingview.com/news/top-providers/tradingview/" rel="noopener nofollow" target="_blank"><span className="blue-text">Top stories</span></a><span className="trademark"> by TradingView</span></div>
+    </div>
+  );
+}
+
+export default memo(TradingViewWidget);
+</file>
+
+<file path="frontend/src/components/extra/Screener.jsx">
+// TradingViewWidget.jsx
+import React, { useEffect, useRef, memo } from 'react';
+
+function TradingViewWidget() {
+  const container = useRef();
+
+  useEffect(
+    () => {
+      const script = document.createElement("script");
+      script.src = "https://s3.tradingview.com/external-embedding/embed-widget-screener.js";
+      script.type = "text/javascript";
+      script.async = true;
+      script.innerHTML = `
+        {
+          "market": "forex",
+          "showToolbar": true,
+          "defaultColumn": "overview",
+          "defaultScreen": "general",
+          "isTransparent": false,
+          "locale": "en",
+          "colorTheme": "dark",
+          "width": "100%",
+          "height": 550
+        }`;
+      container.current.appendChild(script);
+    },
+    []
+  );
+
+  return (
+    <div className="tradingview-widget-container" ref={container}>
+      <div className="tradingview-widget-container__widget"></div>
+      <div className="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/currencies/" rel="noopener nofollow" target="_blank"><span className="blue-text">Forex Screener</span></a><span className="trademark"> by TradingView</span></div>
+    </div>
+  );
+}
+
+export default memo(TradingViewWidget);
+</file>
+
+<file path="frontend/src/components/extra/StockMarket.jsx">
+// TradingViewWidget.jsx
+import React, { useEffect, useRef, memo } from 'react';
+
+function TradingViewWidget() {
+  const container = useRef();
+
+  useEffect(
+    () => {
+      const script = document.createElement("script");
+      script.src = "https://s3.tradingview.com/external-embedding/embed-widget-hotlists.js";
+      script.type = "text/javascript";
+      script.async = true;
+      script.innerHTML = `
+        {
+          "exchange": "US",
+          "colorTheme": "dark",
+          "dateRange": "12M",
+          "showChart": true,
+          "locale": "en",
+          "largeChartUrl": "",
+          "isTransparent": false,
+          "showSymbolLogo": false,
+          "showFloatingTooltip": false,
+          "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
+          "plotLineColorFalling": "rgba(41, 98, 255, 1)",
+          "gridLineColor": "rgba(240, 243, 250, 0)",
+          "scaleFontColor": "#DBDBDB",
+          "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
+          "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
+          "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
+          "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+          "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
+          "width": "400",
+          "height": "550"
+        }`;
+      container.current.appendChild(script);
+    },
+    []
+  );
+
+  return (
+    <div className="tradingview-widget-container" ref={container}>
+      <div className="tradingview-widget-container__widget"></div>
+      <div className="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/stocks-usa/" rel="noopener nofollow" target="_blank"><span className="blue-text">Stocks today</span></a><span className="trademark"> by TradingView</span></div>
+    </div>
+  );
+}
+
+export default memo(TradingViewWidget);
+</file>
+
+<file path="frontend/src/components/extra/SymbolOverview.jsx">
+// TradingViewWidget.jsx
+import React, { useEffect, useRef, memo } from 'react';
+
+function TradingViewWidget() {
+  const container = useRef();
+
+  useEffect(
+    () => {
+      const script = document.createElement("script");
+      script.src = "https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js";
+      script.type = "text/javascript";
+      script.async = true;
+      script.innerHTML = `
+        {
+          "lineWidth": 2,
+          "lineType": 0,
+          "chartType": "area",
+          "fontColor": "rgb(106, 109, 120)",
+          "gridLineColor": "rgba(242, 242, 242, 0.06)",
+          "volumeUpColor": "rgba(34, 171, 148, 0.5)",
+          "volumeDownColor": "rgba(247, 82, 95, 0.5)",
+          "backgroundColor": "#0F0F0F",
+          "widgetFontColor": "#DBDBDB",
+          "upColor": "#22ab94",
+          "downColor": "#f7525f",
+          "borderUpColor": "#22ab94",
+          "borderDownColor": "#f7525f",
+          "wickUpColor": "#22ab94",
+          "wickDownColor": "#f7525f",
+          "colorTheme": "dark",
+          "isTransparent": false,
+          "locale": "en",
+          "chartOnly": false,
+          "scalePosition": "right",
+          "scaleMode": "Normal",
+          "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+          "valuesTracking": "1",
+          "changeMode": "price-and-percent",
+          "symbols": [
+            [
+              "Apple",
+              "NASDAQ:AAPL|1D"
+            ],
+            [
+              "Google",
+              "NASDAQ:GOOGL|1D"
+            ],
+            [
+              "Microsoft",
+              "NASDAQ:MSFT|1D"
+            ]
+          ],
+          "dateRanges": [
+            "1d|1",
+            "1m|30",
+            "3m|60",
+            "12m|1D",
+            "60m|1W",
+            "all|1M"
+          ],
+          "fontSize": "10",
+          "headerFontSize": "medium",
+          "autosize": true,
+          "width": "100%",
+          "height": "100%",
+          "noTimeScale": false,
+          "hideDateRanges": false,
+          "hideMarketStatus": false,
+          "hideSymbolLogo": false
+        }`;
+      container.current.appendChild(script);
+    },
+    []
+  );
+
+  return (
+    <div className="tradingview-widget-container" ref={container}>
+      <div className="tradingview-widget-container__widget"></div>
+      <div className="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener nofollow" target="_blank"><span className="blue-text">Apple</span></a><span className="comma">,</span>&nbsp;<a href="https://www.tradingview.com/symbols/NASDAQ-GOOGL/" rel="noopener nofollow" target="_blank"><span className="blue-text">Google</span></a><span className="comma">,</span><span className="and">&nbsp;and&nbsp;</span><a href="https://www.tradingview.com/symbols/NASDAQ-MSFT/" rel="noopener nofollow" target="_blank"><span className="blue-text">Microsoft stock price</span></a><span className="trademark">&nbsp;by TradingView</span></div>
+    </div>
+  );
+}
+
+export default memo(TradingViewWidget);
+</file>
+
+<file path="frontend/src/components/extra/TickerTape.jsx">
+// TradingViewWidget.jsx
+import React, { useEffect, useRef, memo } from 'react';
+
+function TradingViewWidget() {
+  const container = useRef();
+
+  useEffect(
+    () => {
+      const script = document.createElement("script");
+      script.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+      script.type = "text/javascript";
+      script.async = true;
+      script.innerHTML = `
+        {
+          "symbols": [
+            {
+              "proName": "FOREXCOM:SPXUSD",
+              "title": "S&P 500 Index"
+            },
+            {
+              "proName": "FOREXCOM:NSXUSD",
+              "title": "US 100 Cash CFD"
+            },
+            {
+              "proName": "FX_IDC:EURUSD",
+              "title": "EUR to USD"
+            },
+            {
+              "proName": "BITSTAMP:BTCUSD",
+              "title": "Bitcoin"
+            },
+            {
+              "proName": "BITSTAMP:ETHUSD",
+              "title": "Ethereum"
+            }
+          ],
+          "colorTheme": "dark",
+          "locale": "en",
+          "largeChartUrl": "",
+          "isTransparent": false,
+          "showSymbolLogo": true,
+          "displayMode": "adaptive"
+        }`;
+      container.current.appendChild(script);
+    },
+    []
+  );
+
+  return (
+    <div className="tradingview-widget-container" ref={container}>
+      <div className="tradingview-widget-container__widget"></div>
+      <div className="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/" rel="noopener nofollow" target="_blank"><span className="blue-text">Ticker tape</span></a><span className="trademark"> by TradingView</span></div>
+    </div>
+  );
+}
+
+export default memo(TradingViewWidget);
+</file>
+
+<file path="frontend/src/components/AdvancedChart.jsx">
+import React, { useEffect, useRef, memo } from 'react';
+
+function AdvancedChart({ symbol, theme, interval = "D" }) {
+  const container = useRef();
+
+  useEffect(() => {
+    if (!container.current) return;
+
+    // 1. Clean up existing widget to prevent duplicates when props change
+    container.current.innerHTML = "";
+
+    // 2. Create the script
+    const script = document.createElement("script");
+    script.src = "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+    script.type = "text/javascript";
+    script.async = true;
+
+    // 3. Construct the config dynamically based on props
+    // We use JSON.stringify to safely inject the props into the config object
+    const widgetConfig = {
+      autosize: true,
+      symbol: symbol, // Dynamic Symbol
+      interval: interval,
+      timezone: "Etc/UTC",
+      theme: theme,   // Dynamic Theme
+      style: "1",
+      locale: "en",
+      enable_publishing: false,
+      allow_symbol_change: true,
+      calendar: false,
+      support_host: "https://www.tradingview.com",
+      hotlist: true,
+      details: true,
+      studies: [
+        "STD;Bollinger_Bands",
+        "STD;Historical_Volatility",
+        "STD;VWMA"
+      ]
+    };
+
+    script.innerHTML = JSON.stringify(widgetConfig);
+
+    // 4. Append
+    container.current.appendChild(script);
+
+  }, [symbol, theme, interval]); // Re-run this effect if these props change
+
+  return (
+    <div className="tradingview-widget-container" ref={container} style={{ height: "100%", width: "100%" }}>
+      <div className="tradingview-widget-container__widget" style={{ height: "calc(100% - 32px)", width: "100%" }}></div>
+    </div>
+  );
+}
+
+export default memo(AdvancedChart);
+</file>
+
+<file path="frontend/src/components/comps.css">
+.titlebar {
+    height: 32px; /* Standard titlebar height */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none; /* Prevent text selection */
+    flex-shrink: 0; /* Prevent shrinking when app content overflows */
+    transition: background-color 0.2s, color 0.2s;
+    z-index: 9999;
+}
+
+/* --- Theming --- */
+.titlebar-dark {
+    background-color: #0F0F0F; /* Matches your chart bg */
+    color: #e0e0e0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0);
+}
+
+.titlebar-light {
+    background-color: #FFFFFF;
+    color: #333333;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* --- Drag Region --- */
+.titlebar-drag-region {
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    
+    /* THE MAGIC WAILS PROPERTY */
+    --wails-draggable: drag;
+}
+
+.app-icon {
+    display: flex;
+    align-items: center;
+    color: #2962FF; /* TradingView Blue */
+}
+
+/* --- Window Controls --- */
+.window-controls {
+    display: flex;
+    height: 100%;
+    /* Prevent dragging when clicking buttons */
+    --wails-draggable: no-drag; 
+}
+
+.control-btn {
+    background: transparent;
+    border: none;
+    height: 100%;
+    width: 46px; /* Windows 10/11 standard width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: inherit;
+    transition: background-color 0.2s;
+    outline: none;
+}
+
+/* Hover Effects */
+.titlebar-dark .control-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.titlebar-light .control-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Close Button Special Styling */
+.control-btn.close-btn:hover {
+    background-color: #E81123 !important;
+    color: white !important;
+}
+
+.app-title {
+    font-family: "Symbols Nerd Font", sans-serif;
+}
+</file>
+
+<file path="frontend/src/components/Titlebar.jsx">
+import React from 'react';
+import { WindowMinimise, Quit } from '../../wailsjs/runtime/runtime';
+import './comps.css';
+
+const TitleBar = ({ theme }) => {
+    return (
+        <div className={`titlebar ${theme === 'dark' ? 'titlebar-dark' : 'titlebar-light'}`}>
+            {/* Draggable Area - Title/Logo */}
+            <div className="titlebar-drag-region">
+                <div className="app-icon">
+                </div>
+                <span className="app-title"></span>
+            </div>
+
+            {/* Window Controls (Non-Draggable) */}
+            <div className="window-controls">
+                <button className="control-btn minimize-btn" onClick={WindowMinimise}>
+                    <svg width="8" height="1" viewBox="0 0 10 1">
+                        <path d="M0 0h10v1H0z" fill="currentColor" />
+                    </svg>
+                </button>
+                
+                <button className="control-btn close-btn" onClick={Quit}>
+                    <svg width="8" height="8" viewBox="0 0 10 10">
+                        <path d="M1 0L0 1l4 4-4 4 1 1 4-4 4 4 1-1-4-4 4-4-1-1-4 4-4-4z" fill="currentColor" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    );
+};
+
+export default TitleBar;
+</file>
+
+<file path="frontend/src/App.css">
+:root {
+  --sym: "Symbols Nerd Font";
+  --sans: "Aptos", sans-serif;
+}
+
+html,
+body,
+#root {
+    border-radius: 13px !important;
+    font-family: var(--sans), var(--sym);
+}
+
+/* Base Reset */
+* {
+  box-sizing: border-box;
+  border-radius: 13px
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling, let chart fill window */
+  font-family: var(--sans), var(--sym), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+  border-radius: 13px;
+}
+
+#app {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  border-radius: 13px;
+}
+
+/* Themes */
+.app-dark {
+  background-color: #0f0f0f;
+  color: #e0e0e0;
+}
+
+.app-light {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+/* Control Bar */
+.control-bar {
+  height: 40px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+  flex-shrink: 0;
+  font-family: var(--sans), var(--sym);
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+input {
+  font-family: var(--sans);
+  justify-self: center;
+  padding: 8px 12px;
+  border-radius: 9px;
+  border: 1px solid #555;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: inherit;
+  font-weight: bold;
+  outline: none;
+  text-transform: uppercase;
+  height: 25px;
+  width: 10em;
+}
+
+button {
+  font-family: var(--sans), var(--sym);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 9px;
+  border: none;
+  background-color: #2962ff;
+  color: rgb(214, 214, 214);
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background-color: #1e45bb;
+}
+
+.theme-btn {
+  background-color: transparent;
+  border: 1px solid #555;
+  color: inherit;
+}
+
+.theme-btn:hover {
+  background-color: rgba(128, 128, 128, 0.2);
+}
+
+/* Chart Container */
+.chart-container {
+  flex-grow: 1; /* Takes up remaining height */
+  position: relative;
+  width: 100%;
+}
+</file>
+
+<file path="frontend/src/App.jsx">
+import React, { useState, useEffect } from 'react';
+import './App.css';
+import AdvancedChart from './components/AdvancedChart';
+import TitleBar from './components/Titlebar'; // <--- Import
+
+import { LoadSettings, SaveSettings } from "../wailsjs/go/main/App";
+
+function App() {
+    const [symbol, setSymbol] = useState("NASDAQ:AAPL");
+    const [theme, setTheme] = useState("dark");
+    const [tempSymbol, setTempSymbol] = useState("NASDAQ:AAPL");
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        LoadSettings().then((config) => {
+            setSymbol(config.symbol);
+            setTempSymbol(config.symbol);
+            setTheme(config.theme);
+            setIsLoaded(true);
+        });
+    }, []);
+
+    const handleApply = () => {
+        setSymbol(tempSymbol);
+        SaveSettings(tempSymbol, theme);
+    };
+
+    const toggleTheme = () => {
+        const newTheme = theme === "dark" ? "light" : "dark";
+        setTheme(newTheme);
+        SaveSettings(symbol, newTheme);
+    };
+
+    if (!isLoaded) return <div className="loading"></div>;
+
+    return (
+        <div id="app" className={theme === "dark" ? "app-dark" : "app-light"}>
+            
+            {/* 1. Add The Custom Title Bar */}
+            <TitleBar theme={theme} />
+
+            {/* 2. Control Bar */}
+            <div className="control-bar">
+                <div className="input-group">
+                    <label></label>
+                    <input 
+                        type="text" 
+                        value={tempSymbol}
+                        onChange={(e) => setTempSymbol(e.target.value.toUpperCase())}
+                        onKeyDown={(e) => e.key === 'Enter' && handleApply()}
+                    />
+                    <button onClick={handleApply}></button>
+                </div>
+                
+                <div className="actions">
+                    <button className="theme-btn" onClick={toggleTheme}>
+                        {theme === "dark" ? "Light" : "Dark"}
+                    </button>
+                </div>
+            </div>
+
+            {/* 3. Chart Area */}
+            <div className="chart-container">
+                <AdvancedChart symbol={symbol} theme={theme} />
+            </div>
+        </div>
+    );
+}
+
+export default App;
+</file>
+
+<file path="frontend/src/main.jsx">
+import React from 'react'
+import {createRoot} from 'react-dom/client'
+import './style.css'
+import App from './App'
+
+const container = document.getElementById('root')
+
+const root = createRoot(container)
+
+root.render(
+    <React.StrictMode>
+        <App/>
+    </React.StrictMode>
+)
+</file>
+
+<file path="frontend/src/style.css">
+html {
+    background-color: rgba(27, 38, 54, 1);
+    text-align: center;
+    color: white;
+}
+
+body {
+    margin: 0;
+    color: white;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+@font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 400;
+    src: local(""),
+    url("assets/fonts/nunito-v16-latin-regular.woff2") format("woff2");
+}
+
+#app {
+    height: 100vh;
+    text-align: center;
+    border-radius: 13px !important;
+}
+</file>
+
+<file path="frontend/wailsjs/runtime/package.json">
+{
+  "name": "@wailsapp/runtime",
+  "version": "2.0.0",
+  "description": "Wails Javascript runtime library",
+  "main": "runtime.js",
+  "types": "runtime.d.ts",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wailsapp/wails.git"
+  },
+  "keywords": [
+    "Wails",
+    "Javascript",
+    "Go"
+  ],
+  "author": "Lea Anthony <lea.anthony@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wailsapp/wails/issues"
+  },
+  "homepage": "https://github.com/wailsapp/wails#readme"
+}
+</file>
+
+<file path="frontend/wailsjs/runtime/runtime.d.ts">
+/*
+ _       __      _ __
+| |     / /___ _(_) /____
+| | /| / / __ `/ / / ___/
+| |/ |/ / /_/ / / (__  )
+|__/|__/\__,_/_/_/____/
+The electron alternative for Go
+(c) Lea Anthony 2019-present
+*/
+
+export interface Position {
+    x: number;
+    y: number;
+}
+
+export interface Size {
+    w: number;
+    h: number;
+}
+
+export interface Screen {
+    isCurrent: boolean;
+    isPrimary: boolean;
+    width : number
+    height : number
+}
+
+// Environment information such as platform, buildtype, ...
+export interface EnvironmentInfo {
+    buildType: string;
+    platform: string;
+    arch: string;
+}
+
+// [EventsEmit](https://wails.io/docs/reference/runtime/events#eventsemit)
+// emits the given event. Optional data may be passed with the event.
+// This will trigger any event listeners.
+export function EventsEmit(eventName: string, ...data: any): void;
+
+// [EventsOn](https://wails.io/docs/reference/runtime/events#eventson) sets up a listener for the given event name.
+export function EventsOn(eventName: string, callback: (...data: any) => void): () => void;
+
+// [EventsOnMultiple](https://wails.io/docs/reference/runtime/events#eventsonmultiple)
+// sets up a listener for the given event name, but will only trigger a given number times.
+export function EventsOnMultiple(eventName: string, callback: (...data: any) => void, maxCallbacks: number): () => void;
+
+// [EventsOnce](https://wails.io/docs/reference/runtime/events#eventsonce)
+// sets up a listener for the given event name, but will only trigger once.
+export function EventsOnce(eventName: string, callback: (...data: any) => void): () => void;
+
+// [EventsOff](https://wails.io/docs/reference/runtime/events#eventsoff)
+// unregisters the listener for the given event name.
+export function EventsOff(eventName: string, ...additionalEventNames: string[]): void;
+
+// [EventsOffAll](https://wails.io/docs/reference/runtime/events#eventsoffall)
+// unregisters all listeners.
+export function EventsOffAll(): void;
+
+// [LogPrint](https://wails.io/docs/reference/runtime/log#logprint)
+// logs the given message as a raw message
+export function LogPrint(message: string): void;
+
+// [LogTrace](https://wails.io/docs/reference/runtime/log#logtrace)
+// logs the given message at the `trace` log level.
+export function LogTrace(message: string): void;
+
+// [LogDebug](https://wails.io/docs/reference/runtime/log#logdebug)
+// logs the given message at the `debug` log level.
+export function LogDebug(message: string): void;
+
+// [LogError](https://wails.io/docs/reference/runtime/log#logerror)
+// logs the given message at the `error` log level.
+export function LogError(message: string): void;
+
+// [LogFatal](https://wails.io/docs/reference/runtime/log#logfatal)
+// logs the given message at the `fatal` log level.
+// The application will quit after calling this method.
+export function LogFatal(message: string): void;
+
+// [LogInfo](https://wails.io/docs/reference/runtime/log#loginfo)
+// logs the given message at the `info` log level.
+export function LogInfo(message: string): void;
+
+// [LogWarning](https://wails.io/docs/reference/runtime/log#logwarning)
+// logs the given message at the `warning` log level.
+export function LogWarning(message: string): void;
+
+// [WindowReload](https://wails.io/docs/reference/runtime/window#windowreload)
+// Forces a reload by the main application as well as connected browsers.
+export function WindowReload(): void;
+
+// [WindowReloadApp](https://wails.io/docs/reference/runtime/window#windowreloadapp)
+// Reloads the application frontend.
+export function WindowReloadApp(): void;
+
+// [WindowSetAlwaysOnTop](https://wails.io/docs/reference/runtime/window#windowsetalwaysontop)
+// Sets the window AlwaysOnTop or not on top.
+export function WindowSetAlwaysOnTop(b: boolean): void;
+
+// [WindowSetSystemDefaultTheme](https://wails.io/docs/next/reference/runtime/window#windowsetsystemdefaulttheme)
+// *Windows only*
+// Sets window theme to system default (dark/light).
+export function WindowSetSystemDefaultTheme(): void;
+
+// [WindowSetLightTheme](https://wails.io/docs/next/reference/runtime/window#windowsetlighttheme)
+// *Windows only*
+// Sets window to light theme.
+export function WindowSetLightTheme(): void;
+
+// [WindowSetDarkTheme](https://wails.io/docs/next/reference/runtime/window#windowsetdarktheme)
+// *Windows only*
+// Sets window to dark theme.
+export function WindowSetDarkTheme(): void;
+
+// [WindowCenter](https://wails.io/docs/reference/runtime/window#windowcenter)
+// Centers the window on the monitor the window is currently on.
+export function WindowCenter(): void;
+
+// [WindowSetTitle](https://wails.io/docs/reference/runtime/window#windowsettitle)
+// Sets the text in the window title bar.
+export function WindowSetTitle(title: string): void;
+
+// [WindowFullscreen](https://wails.io/docs/reference/runtime/window#windowfullscreen)
+// Makes the window full screen.
+export function WindowFullscreen(): void;
+
+// [WindowUnfullscreen](https://wails.io/docs/reference/runtime/window#windowunfullscreen)
+// Restores the previous window dimensions and position prior to full screen.
+export function WindowUnfullscreen(): void;
+
+// [WindowIsFullscreen](https://wails.io/docs/reference/runtime/window#windowisfullscreen)
+// Returns the state of the window, i.e. whether the window is in full screen mode or not.
+export function WindowIsFullscreen(): Promise<boolean>;
+
+// [WindowSetSize](https://wails.io/docs/reference/runtime/window#windowsetsize)
+// Sets the width and height of the window.
+export function WindowSetSize(width: number, height: number): void;
+
+// [WindowGetSize](https://wails.io/docs/reference/runtime/window#windowgetsize)
+// Gets the width and height of the window.
+export function WindowGetSize(): Promise<Size>;
+
+// [WindowSetMaxSize](https://wails.io/docs/reference/runtime/window#windowsetmaxsize)
+// Sets the maximum window size. Will resize the window if the window is currently larger than the given dimensions.
+// Setting a size of 0,0 will disable this constraint.
+export function WindowSetMaxSize(width: number, height: number): void;
+
+// [WindowSetMinSize](https://wails.io/docs/reference/runtime/window#windowsetminsize)
+// Sets the minimum window size. Will resize the window if the window is currently smaller than the given dimensions.
+// Setting a size of 0,0 will disable this constraint.
+export function WindowSetMinSize(width: number, height: number): void;
+
+// [WindowSetPosition](https://wails.io/docs/reference/runtime/window#windowsetposition)
+// Sets the window position relative to the monitor the window is currently on.
+export function WindowSetPosition(x: number, y: number): void;
+
+// [WindowGetPosition](https://wails.io/docs/reference/runtime/window#windowgetposition)
+// Gets the window position relative to the monitor the window is currently on.
+export function WindowGetPosition(): Promise<Position>;
+
+// [WindowHide](https://wails.io/docs/reference/runtime/window#windowhide)
+// Hides the window.
+export function WindowHide(): void;
+
+// [WindowShow](https://wails.io/docs/reference/runtime/window#windowshow)
+// Shows the window, if it is currently hidden.
+export function WindowShow(): void;
+
+// [WindowMaximise](https://wails.io/docs/reference/runtime/window#windowmaximise)
+// Maximises the window to fill the screen.
+export function WindowMaximise(): void;
+
+// [WindowToggleMaximise](https://wails.io/docs/reference/runtime/window#windowtogglemaximise)
+// Toggles between Maximised and UnMaximised.
+export function WindowToggleMaximise(): void;
+
+// [WindowUnmaximise](https://wails.io/docs/reference/runtime/window#windowunmaximise)
+// Restores the window to the dimensions and position prior to maximising.
+export function WindowUnmaximise(): void;
+
+// [WindowIsMaximised](https://wails.io/docs/reference/runtime/window#windowismaximised)
+// Returns the state of the window, i.e. whether the window is maximised or not.
+export function WindowIsMaximised(): Promise<boolean>;
+
+// [WindowMinimise](https://wails.io/docs/reference/runtime/window#windowminimise)
+// Minimises the window.
+export function WindowMinimise(): void;
+
+// [WindowUnminimise](https://wails.io/docs/reference/runtime/window#windowunminimise)
+// Restores the window to the dimensions and position prior to minimising.
+export function WindowUnminimise(): void;
+
+// [WindowIsMinimised](https://wails.io/docs/reference/runtime/window#windowisminimised)
+// Returns the state of the window, i.e. whether the window is minimised or not.
+export function WindowIsMinimised(): Promise<boolean>;
+
+// [WindowIsNormal](https://wails.io/docs/reference/runtime/window#windowisnormal)
+// Returns the state of the window, i.e. whether the window is normal or not.
+export function WindowIsNormal(): Promise<boolean>;
+
+// [WindowSetBackgroundColour](https://wails.io/docs/reference/runtime/window#windowsetbackgroundcolour)
+// Sets the background colour of the window to the given RGBA colour definition. This colour will show through for all transparent pixels.
+export function WindowSetBackgroundColour(R: number, G: number, B: number, A: number): void;
+
+// [ScreenGetAll](https://wails.io/docs/reference/runtime/window#screengetall)
+// Gets the all screens. Call this anew each time you want to refresh data from the underlying windowing system.
+export function ScreenGetAll(): Promise<Screen[]>;
+
+// [BrowserOpenURL](https://wails.io/docs/reference/runtime/browser#browseropenurl)
+// Opens the given URL in the system browser.
+export function BrowserOpenURL(url: string): void;
+
+// [Environment](https://wails.io/docs/reference/runtime/intro#environment)
+// Returns information about the environment
+export function Environment(): Promise<EnvironmentInfo>;
+
+// [Quit](https://wails.io/docs/reference/runtime/intro#quit)
+// Quits the application.
+export function Quit(): void;
+
+// [Hide](https://wails.io/docs/reference/runtime/intro#hide)
+// Hides the application.
+export function Hide(): void;
+
+// [Show](https://wails.io/docs/reference/runtime/intro#show)
+// Shows the application.
+export function Show(): void;
+
+// [ClipboardGetText](https://wails.io/docs/reference/runtime/clipboard#clipboardgettext)
+// Returns the current text stored on clipboard
+export function ClipboardGetText(): Promise<string>;
+
+// [ClipboardSetText](https://wails.io/docs/reference/runtime/clipboard#clipboardsettext)
+// Sets a text on the clipboard
+export function ClipboardSetText(text: string): Promise<boolean>;
+
+// [OnFileDrop](https://wails.io/docs/reference/runtime/draganddrop#onfiledrop)
+// OnFileDrop listens to drag and drop events and calls the callback with the coordinates of the drop and an array of path strings.
+export function OnFileDrop(callback: (x: number, y: number ,paths: string[]) => void, useDropTarget: boolean) :void
+
+// [OnFileDropOff](https://wails.io/docs/reference/runtime/draganddrop#dragandddropoff)
+// OnFileDropOff removes the drag and drop listeners and handlers.
+export function OnFileDropOff() :void
+
+// Check if the file path resolver is available
+export function CanResolveFilePaths(): boolean;
+
+// Resolves file paths for an array of files
+export function ResolveFilePaths(files: File[]): void
+</file>
+
+<file path="frontend/wailsjs/runtime/runtime.js">
+/*
+ _       __      _ __
+| |     / /___ _(_) /____
+| | /| / / __ `/ / / ___/
+| |/ |/ / /_/ / / (__  )
+|__/|__/\__,_/_/_/____/
+The electron alternative for Go
+(c) Lea Anthony 2019-present
+*/
+
+export function LogPrint(message) {
+    window.runtime.LogPrint(message);
+}
+
+export function LogTrace(message) {
+    window.runtime.LogTrace(message);
+}
+
+export function LogDebug(message) {
+    window.runtime.LogDebug(message);
+}
+
+export function LogInfo(message) {
+    window.runtime.LogInfo(message);
+}
+
+export function LogWarning(message) {
+    window.runtime.LogWarning(message);
+}
+
+export function LogError(message) {
+    window.runtime.LogError(message);
+}
+
+export function LogFatal(message) {
+    window.runtime.LogFatal(message);
+}
+
+export function EventsOnMultiple(eventName, callback, maxCallbacks) {
+    return window.runtime.EventsOnMultiple(eventName, callback, maxCallbacks);
+}
+
+export function EventsOn(eventName, callback) {
+    return EventsOnMultiple(eventName, callback, -1);
+}
+
+export function EventsOff(eventName, ...additionalEventNames) {
+    return window.runtime.EventsOff(eventName, ...additionalEventNames);
+}
+
+export function EventsOffAll() {
+  return window.runtime.EventsOffAll();
+}
+
+export function EventsOnce(eventName, callback) {
+    return EventsOnMultiple(eventName, callback, 1);
+}
+
+export function EventsEmit(eventName) {
+    let args = [eventName].slice.call(arguments);
+    return window.runtime.EventsEmit.apply(null, args);
+}
+
+export function WindowReload() {
+    window.runtime.WindowReload();
+}
+
+export function WindowReloadApp() {
+    window.runtime.WindowReloadApp();
+}
+
+export function WindowSetAlwaysOnTop(b) {
+    window.runtime.WindowSetAlwaysOnTop(b);
+}
+
+export function WindowSetSystemDefaultTheme() {
+    window.runtime.WindowSetSystemDefaultTheme();
+}
+
+export function WindowSetLightTheme() {
+    window.runtime.WindowSetLightTheme();
+}
+
+export function WindowSetDarkTheme() {
+    window.runtime.WindowSetDarkTheme();
+}
+
+export function WindowCenter() {
+    window.runtime.WindowCenter();
+}
+
+export function WindowSetTitle(title) {
+    window.runtime.WindowSetTitle(title);
+}
+
+export function WindowFullscreen() {
+    window.runtime.WindowFullscreen();
+}
+
+export function WindowUnfullscreen() {
+    window.runtime.WindowUnfullscreen();
+}
+
+export function WindowIsFullscreen() {
+    return window.runtime.WindowIsFullscreen();
+}
+
+export function WindowGetSize() {
+    return window.runtime.WindowGetSize();
+}
+
+export function WindowSetSize(width, height) {
+    window.runtime.WindowSetSize(width, height);
+}
+
+export function WindowSetMaxSize(width, height) {
+    window.runtime.WindowSetMaxSize(width, height);
+}
+
+export function WindowSetMinSize(width, height) {
+    window.runtime.WindowSetMinSize(width, height);
+}
+
+export function WindowSetPosition(x, y) {
+    window.runtime.WindowSetPosition(x, y);
+}
+
+export function WindowGetPosition() {
+    return window.runtime.WindowGetPosition();
+}
+
+export function WindowHide() {
+    window.runtime.WindowHide();
+}
+
+export function WindowShow() {
+    window.runtime.WindowShow();
+}
+
+export function WindowMaximise() {
+    window.runtime.WindowMaximise();
+}
+
+export function WindowToggleMaximise() {
+    window.runtime.WindowToggleMaximise();
+}
+
+export function WindowUnmaximise() {
+    window.runtime.WindowUnmaximise();
+}
+
+export function WindowIsMaximised() {
+    return window.runtime.WindowIsMaximised();
+}
+
+export function WindowMinimise() {
+    window.runtime.WindowMinimise();
+}
+
+export function WindowUnminimise() {
+    window.runtime.WindowUnminimise();
+}
+
+export function WindowSetBackgroundColour(R, G, B, A) {
+    window.runtime.WindowSetBackgroundColour(R, G, B, A);
+}
+
+export function ScreenGetAll() {
+    return window.runtime.ScreenGetAll();
+}
+
+export function WindowIsMinimised() {
+    return window.runtime.WindowIsMinimised();
+}
+
+export function WindowIsNormal() {
+    return window.runtime.WindowIsNormal();
+}
+
+export function BrowserOpenURL(url) {
+    window.runtime.BrowserOpenURL(url);
+}
+
+export function Environment() {
+    return window.runtime.Environment();
+}
+
+export function Quit() {
+    window.runtime.Quit();
+}
+
+export function Hide() {
+    window.runtime.Hide();
+}
+
+export function Show() {
+    window.runtime.Show();
+}
+
+export function ClipboardGetText() {
+    return window.runtime.ClipboardGetText();
+}
+
+export function ClipboardSetText(text) {
+    return window.runtime.ClipboardSetText(text);
+}
+
+/**
+ * Callback for OnFileDrop returns a slice of file path strings when a drop is finished.
+ *
+ * @export
+ * @callback OnFileDropCallback
+ * @param {number} x - x coordinate of the drop
+ * @param {number} y - y coordinate of the drop
+ * @param {string[]} paths - A list of file paths.
+ */
+
+/**
+ * OnFileDrop listens to drag and drop events and calls the callback with the coordinates of the drop and an array of path strings.
+ *
+ * @export
+ * @param {OnFileDropCallback} callback - Callback for OnFileDrop returns a slice of file path strings when a drop is finished.
+ * @param {boolean} [useDropTarget=true] - Only call the callback when the drop finished on an element that has the drop target style. (--wails-drop-target)
+ */
+export function OnFileDrop(callback, useDropTarget) {
+    return window.runtime.OnFileDrop(callback, useDropTarget);
+}
+
+/**
+ * OnFileDropOff removes the drag and drop listeners and handlers.
+ */
+export function OnFileDropOff() {
+    return window.runtime.OnFileDropOff();
+}
+
+export function CanResolveFilePaths() {
+    return window.runtime.CanResolveFilePaths();
+}
+
+export function ResolveFilePaths(files) {
+    return window.runtime.ResolveFilePaths(files);
+}
+</file>
+
+<file path="frontend/index.html">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>markdock</title>
+</head>
+<body>
+<div id="root"></div>
+<script src="./src/main.jsx" type="module"></script>
+</body>
+</html>
+</file>
+
+<file path="frontend/package.json">
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.0.1",
+    "vite": "^3.0.7"
+  }
+}
+</file>
+
+<file path="frontend/package.json.md5">
+2f783b65f3a88c5b7de1cd85fd4d4d57
+</file>
+
+<file path="frontend/vite.config.js">
+import {defineConfig} from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()]
+})
+</file>
+
+<file path=".gitignore">
+# OS residuals
+desktop.ini
+Desktop.ini
+Icon?
+.DS_Store
+Thumbs.db
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Logs & environment
+logs
+*.log
+.env
+.env.local
+.env.*.local
+
+# JavaScript/Node
+node_modules/
+.next
+.yarn-integrity
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.pnp
+.pnp.js
+coverage/
+.nyc_output
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+*.mo
+*.pot
+.venv
+venv/
+ENV/
+env/
+.Python
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+vendor/
+Godeps/
+
+# Editors
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# Compiled outputs
+/dist
+/tmp
+/out-tsc
+*.o
+*.a
+
+# Misc
+.sass-cache/
+connect.lock
+typings/
+.angular/
+</file>
+
+<file path="app.go">
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	"github.com/wailsapp/wails/v2/pkg/runtime" // <--- ADD THIS
+)
+
+// App struct
+type App struct {
+	ctx context.Context
+}
+
+// Config struct to hold user preferences
+type Config struct {
+	Symbol string `json:"symbol"`
+	Theme  string `json:"theme"`
+}
+
+// NewApp creates a new App application struct
+func NewApp() *App {
+	return &App{}
+}
+
+// startup is called when the app starts. The context is saved
+// so we can call the runtime methods
+func (a *App) startup(ctx context.Context) {
+	a.ctx = ctx
+}
+
+func (a *App) shutdown(ctx context.Context) {
+	a.SaveSettings("NASDAQ:AAPL", "dark")
+	log.Println("Going to sleep...")
+	runtime.Quit(a.ctx)
+}
+
+// SaveSettings writes the user configuration to a local file
+func (a *App) SaveSettings(symbol string, theme string) string {
+	config := Config{Symbol: symbol, Theme: theme}
+	data, _ := json.MarshalIndent(config, "", "  ")
+	_ = os.WriteFile("dockConfig.json", data, 0644)
+	return "Settings Saved"
+}
+
+// LoadSettings reads the configuration from a local file
+func (a *App) LoadSettings(symbol string) Config {
+	data, err := os.ReadFile("dockConfig.json")
+	if err != nil {
+		// Default values if file doesn't exist
+		return Config{Symbol: "GOOGL", Theme: "dark"}
+	}
+	var config Config
+	json.Unmarshal(data, &config)
+	return config
+}
+</file>
+
+<file path="go.mod">
+module markdock
+
+go 1.23
+
+require github.com/wailsapp/wails/v2 v2.11.0
+
+require (
+	github.com/bep/debounce v1.2.1 // indirect
+	github.com/go-ole/go-ole v1.3.0 // indirect
+	github.com/godbus/dbus/v5 v5.1.0 // indirect
+	github.com/google/uuid v1.6.0 // indirect
+	github.com/gorilla/websocket v1.5.3 // indirect
+	github.com/jchv/go-winloader v0.0.0-20210711035445-715c2860da7e // indirect
+	github.com/labstack/echo/v4 v4.13.3 // indirect
+	github.com/labstack/gommon v0.4.2 // indirect
+	github.com/leaanthony/go-ansi-parser v1.6.1 // indirect
+	github.com/leaanthony/gosod v1.0.4 // indirect
+	github.com/leaanthony/slicer v1.6.0 // indirect
+	github.com/leaanthony/u v1.1.1 // indirect
+	github.com/mattn/go-colorable v0.1.13 // indirect
+	github.com/mattn/go-isatty v0.0.20 // indirect
+	github.com/pkg/browser v0.0.0-20240102092130-5ac0b6a4141c // indirect
+	github.com/pkg/errors v0.9.1 // indirect
+	github.com/rivo/uniseg v0.4.7 // indirect
+	github.com/samber/lo v1.49.1 // indirect
+	github.com/tkrajina/go-reflector v0.5.8 // indirect
+	github.com/valyala/bytebufferpool v1.0.0 // indirect
+	github.com/valyala/fasttemplate v1.2.2 // indirect
+	github.com/wailsapp/go-webview2 v1.0.22 // indirect
+	github.com/wailsapp/mimetype v1.4.1 // indirect
+	golang.org/x/crypto v0.33.0 // indirect
+	golang.org/x/net v0.35.0 // indirect
+	golang.org/x/sys v0.30.0 // indirect
+	golang.org/x/text v0.22.0 // indirect
+)
+
+// replace github.com/wailsapp/wails/v2 v2.11.0 => C:\Users\drewg\go\pkg\mod
+</file>
+
+<file path="LICENSE">
+MIT License
+
+Copyright (c) 2025 Limp Cheney
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</file>
+
+<file path="main.go">
+package main
+
+import (
+	"embed"
+
+	"github.com/wailsapp/wails/v2"
+	"github.com/wailsapp/wails/v2/pkg/options"
+	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
+	"github.com/wailsapp/wails/v2/pkg/options/mac"
+)
+
+//go:embed all:frontend/dist
+var assets embed.FS
+
+//go:embed appicon.png
+var appIcon []byte
+
+func main() {
+	// Create an instance of the app structure
+	app := NewApp()
+
+	// Create application with options
+	err := wails.Run(&options.App{
+		Title:           "MarkDock",
+		Width:           1024,
+		Height:          1024,
+		Frameless:       true,
+		OnShutdown:      app.shutdown,
+		OnStartup:       app.startup,
+		CSSDragProperty: "--wails-draggable",
+		CSSDragValue:    "drag",
+		AssetServer: &assetserver.Options{
+			Assets: assets,
+		},
+		BackgroundColour: &options.RGBA{R: 0, G: 0, B: 0, A: 0},
+		Bind: []interface{}{
+			app,
+		},
+		Mac: &mac.Options{
+			TitleBar: &mac.TitleBar{
+				TitlebarAppearsTransparent: true,
+				HideTitle:                  true,
+				HideTitleBar:               true,
+				FullSizeContent:            false,
+				UseToolbar:                 false,
+				HideToolbarSeparator:       true,
+			},
+			Appearance:           mac.NSAppearanceNameDarkAqua,
+			WebviewIsTransparent: true,
+			WindowIsTranslucent:  false,
+			ContentProtection:    false,
+			About: &mac.AboutInfo{
+				Title:   "MarkDock",
+				Message: "© 2025 Limp Cheney",
+				Icon:    appIcon,
+			},
+		},
+	})
+
+	if err != nil {
+		println("Error:", err.Error())
+	}
+}
+</file>
+
+<file path="README.md">
+# README
+
+## About
+
+This is the official Wails React template.
+
+You can configure the project by editing `wails.json`. More information about the project settings can be found
+here: https://wails.io/docs/reference/project-config
+
+## Live Development
+
+To run in live development mode, run `wails dev` in the project directory. This will run a Vite development
+server that will provide very fast hot reload of your frontend changes. If you want to develop in a browser
+and have access to your Go methods, there is also a dev server that runs on http://localhost:34115. Connect
+to this in your browser, and you can call your Go code from devtools.
+
+## Building
+
+To build a redistributable, production mode package, use `wails build`.
+</file>
+
+<file path="wails.json">
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "markdock",
+  "outputfilename": "markdock",
+  "frontend:install": "npm install",
+  "frontend:build": "npm run build",
+  "frontend:dev:watcher": "npm run dev",
+  "frontend:dev:serverUrl": "auto",
+  "author": {
+    "name": "limpdev",
+    "email": "drewgorbet2020@gmail.com"
+  }
+}
+</file>
+
+<file path="frontend/wailsjs/go/main/App.d.ts">
+// Cynhyrchwyd y ffeil hon yn awtomatig. PEIDIWCH Â MODIWL
+// This file is automatically generated. DO NOT EDIT
+import {main} from '../models';
+
+export function LoadSettings(arg1:string):Promise<main.Config>;
+
+export function SaveSettings(arg1:string,arg2:string):Promise<string>;
+</file>
+
+<file path="frontend/wailsjs/go/main/App.js">
+// @ts-check
+// Cynhyrchwyd y ffeil hon yn awtomatig. PEIDIWCH Â MODIWL
+// This file is automatically generated. DO NOT EDIT
+
+export function LoadSettings(arg1) {
+  return window['go']['main']['App']['LoadSettings'](arg1);
+}
+
+export function SaveSettings(arg1, arg2) {
+  return window['go']['main']['App']['SaveSettings'](arg1, arg2);
+}
+</file>
+
+<file path="frontend/wailsjs/go/models.ts">
+export namespace main {
+	
+	export class Config {
+	    symbol: string;
+	    theme: string;
+	
+	    static createFrom(source: any = {}) {
+	        return new Config(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.symbol = source["symbol"];
+	        this.theme = source["theme"];
+	    }
+	}
+
+}
+</file>
+
+</files>

@@ -23,4 +23,5 @@ body {
 #app {
     height: 100vh;
     text-align: center;
+    border-radius: 13px !important;
 }

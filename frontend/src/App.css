@@ -1,100 +1,219 @@
 :root {
-    --sym: "Symbols Nerd Font";
-    --sans: "Aptos Nerd Font", sans-serif;
+  --sym: "Symbols Nerd Font";
+  --sans: "Aptos", sans-serif;
 }
 
-/* Base Reset */
+html,
+body,
+#root {
+    border-radius: 13px !important;
+    font-family: var(--sans), var(--sym);
+}
+
+/* ========================================
+   GLOBAL RESET & BASE
+======================================== */
 * {
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 13px;
+  font-family: var(--sans), var(--sym);
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden; /* Prevent scrolling, let chart fill window */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+html, body, #root, #app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--sans), var(--sym);
 }
 
 #app {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.2s, color 0.2s;
 }
 
-/* Themes */
+/* ========================================
+ THEME CLASSES
+======================================== */
 .app-dark {
-    background-color: #0F0F0F;
-    color: #e0e0e0;
+  background-color: #0F0F0F;
+  color: #e0e0e0;
 }
 
 .app-light {
-    background-color: #FFFFFF;
-    color: #333333;
+  background-color: #FFFFFF;
+  color: #333333;
 }
 
-/* Control Bar */
+/* ========================================
+ CONTROL BAR
+======================================== */
 .control-bar {
-    height: 40px;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.1);
-    flex-shrink: 0;
-    font-family: var(--sans);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 0.2s;
 }
 
+.app-light .control-bar {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Input Group */
 .input-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-input {
-    font-family: var(--sans);
-    justify-self: center;
-    padding: 8px 12px;
-    border-radius: 9px;
-    border: 1px solid #555;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: inherit;
-    font-weight: bold;
-    outline: none;
-    text-transform: uppercase;
-    height: 25px;
-    width: 10em;
+.input-group label {
+  font-size: 14px;
+  font-weight: 600;
 }
 
-button {
-    font-family: var(--sans);
-    cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 9px;
-    border: none;
-    background-color: #2962FF;
-    color: white;
-    font-weight: 600;
-    transition: background 0.2s;
+.input-group input {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  outline: none;
+  transition: all 0.2s;
+  width: 180px;
 }
 
-button:hover {
-    background-color: #1E45BB;
+.input-group input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-.theme-btn {
-    background-color: transparent;
-    border: 1px solid #555;
-    color: inherit;
+.app-light .input-group input {
+  border-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
-.theme-btn:hover {
-    background-color: rgba(128, 128, 128, 0.2);
+.input-group input:focus {
+  border-color: #2962FF;
+  background-color: rgba(41, 98, 255, 0.1);
 }
 
-/* Chart Container */
+.input-group button {
+  padding: 4px 7px;
+  font-size: 14px;
+  font-weight: 200;
+  border: none;
+  border-radius: 7px;
+  background-color: #4469ce;
+  color: rgb(232, 232, 232);
+  cursor: pointer;
+  transition: all 90ms ease-in;
+}
+
+.input-group button:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.input-group button:hover:not(:disabled) {
+  background-color: #1E53E5;
+  transform: translateY(-2px);
+}
+
+.input-group button:active:not(:disabled) {
+  transform: translateY(0) scale(0.8,0.9);
+}
+
+.input-group button::after {
+  content: '';
+}
+
+/* Actions Group */
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.theme-btn,
+.view-btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.app-light .theme-btn,
+.app-light .view-btn {
+  border-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.theme-btn:hover,
+.view-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.app-light .theme-btn:hover,
+.app-light .view-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.theme-btn:active,
+.view-btn:active {
+  transform: translateY(0);
+}
+
+.view-btn {
+  background-color: rgba(41, 98, 255, 0.1);
+  border-color: #2962FF;
+  color: #2962FF;
+}
+
+.app-light .view-btn {
+  background-color: rgba(41, 98, 255, 0.1);
+  border-color: #2962FF;
+  color: #2962FF;
+}
+
+.view-btn:hover {
+  background-color: rgba(41, 98, 255, 0.2);
+}
+
+/* ========================================
+ CHART CONTAINER
+======================================== */
 .chart-container {
-    flex-grow: 1; /* Takes up remaining height */
-    position: relative;
-    width: 100%;
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ========================================
+ LOADING STATE
+======================================== */
+.loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0F0F0F;
+  color: #e0e0e0;
+  font-size: 16px;
+}
+
+.loading::after {
+  content: 'Loading...';
 }
