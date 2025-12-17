@@ -43,7 +43,7 @@ html, body, #root, #app {
 }
 
 .app-light {
-  background-color: #FFFFFF;
+  background-color: #ECECED;
   color: #333333;
 }
 
@@ -56,7 +56,7 @@ html, body, #root, #app {
   justify-content: space-between;
   padding: 12px 20px;
   flex-shrink: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   transition: border-color 0.2s;
 }
 
@@ -72,15 +72,17 @@ html, body, #root, #app {
 }
 
 .input-group label {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
 }
 
 .input-group input {
   padding: 8px 12px;
   font-size: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0);
+  border-radius: 13px;
+  max-width: 9em;
+  justify-items: center;
   background-color: rgba(255, 255, 255, 0.05);
   color: inherit;
   outline: none;
@@ -89,7 +91,7 @@ html, body, #root, #app {
 }
 
 .input-group input:disabled {
-  opacity: 0.5;
+  opacity: 0.2;
   cursor: not-allowed;
 }
 
@@ -109,10 +111,10 @@ html, body, #root, #app {
   font-weight: 200;
   border: none;
   border-radius: 7px;
-  background-color: #4469ce;
-  color: rgb(232, 232, 232);
+  background-color: #112353;
+  color: #ffffff90;
   cursor: pointer;
-  transition: all 90ms ease-in;
+  transition: all 175ms ease-in;
 }
 
 .input-group button:disabled {
@@ -121,7 +123,8 @@ html, body, #root, #app {
 }
 
 .input-group button:hover:not(:disabled) {
-  background-color: #1E53E5;
+  color: #ECECED;
+  background-color: #0a2675;
   transform: translateY(-2px);
 }
 
@@ -141,10 +144,10 @@ html, body, #root, #app {
 
 .theme-btn,
 .view-btn {
-  padding: 8px 16px;
+  padding: 4px 10px;
   font-size: 14px;
   font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0);
   border-radius: 6px;
   background-color: rgba(255, 255, 255, 0.05);
   color: inherit;
@@ -161,7 +164,7 @@ html, body, #root, #app {
 .theme-btn:hover,
 .view-btn:hover {
   background-color: rgba(255, 255, 255, 0.1);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .app-light .theme-btn:hover,
@@ -176,8 +179,8 @@ html, body, #root, #app {
 
 .view-btn {
   background-color: rgba(41, 98, 255, 0.1);
-  border-color: #2962FF;
-  color: #2962FF;
+  border-color: #2962FF00;
+  color: #acacac;
 }
 
 .app-light .view-btn {

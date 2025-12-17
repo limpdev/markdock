@@ -18,7 +18,7 @@
 }
 
 .titlebar-light {
-    background-color: #FFFFFF;
+    background-color: #ECECED;
     color: #333333;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -48,21 +48,25 @@
 .window-controls {
     display: flex;
     height: 100%;
+    margin-right: 1em;
     /* Prevent dragging when clicking buttons */
     --wails-draggable: no-drag; 
 }
 
 .control-btn {
     background: transparent;
+    border-radius: 7px;
+    margin-top: 5px;
     border: none;
-    height: 100%;
-    width: 46px; /* Windows 10/11 standard width */
+    height: 22px;
+    width: 16px;
+    width: 38px; /* Windows 10/11 standard width */
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     color: inherit;
-    transition: background-color 0.2s;
+    transition: all 120ms cubic-bezier(0.4, 0, 0.2, 1);
     outline: none;
 }
 
@@ -77,10 +81,19 @@
 
 /* Close Button Special Styling */
 .control-btn.close-btn:hover {
-    background-color: #E81123 !important;
-    color: white !important;
+    background-color: #9e3942cb !important;
+    color: #ECECED !important;
+}
+
+.control-btn.close-btn:hover svg {
+    transition: all 120ms cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(1.3);
+}
+
+.control-btn:active {
+    transform: scale(0.8,0.9)
 }
 
 .app-title {
-    font-family: "Symbols Nerd Font", sans-serif;
+    font-family: var(--sans), var(--sym), sans-serif;
 }

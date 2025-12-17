@@ -56,16 +56,16 @@ function App () {
             disabled={view === 'screener'}
           />
           <button onClick={handleApply} disabled={view === 'screener'}>
-             
+           󰀫  
           </button>
         </div>
 
         <div className='actions'>
           <button className='view-btn' onClick={toggleView}>
-            {view === 'chart' ? 'Screener' : 'Chart'}
+            {view === 'chart' ? '' : 'Chart'}
           </button>
           <button className='theme-btn' onClick={toggleTheme}>
-            {theme === 'dark' ? 'Light' : 'Dark'}
+            {theme === 'dark' ? '' : ''}
           </button>
         </div>
       </div>
