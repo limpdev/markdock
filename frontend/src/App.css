@@ -1,0 +1,100 @@
+:root {
+    --sym: "Symbols Nerd Font";
+    --sans: "Aptos Nerd Font", sans-serif;
+}
+
+/* Base Reset */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling, let chart fill window */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+#app {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Themes */
+.app-dark {
+    background-color: #0F0F0F;
+    color: #e0e0e0;
+}
+
+.app-light {
+    background-color: #FFFFFF;
+    color: #333333;
+}
+
+/* Control Bar */
+.control-bar {
+    height: 40px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+    flex-shrink: 0;
+    font-family: var(--sans);
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+input {
+    font-family: var(--sans);
+    justify-self: center;
+    padding: 8px 12px;
+    border-radius: 9px;
+    border: 1px solid #555;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: inherit;
+    font-weight: bold;
+    outline: none;
+    text-transform: uppercase;
+    height: 25px;
+    width: 10em;
+}
+
+button {
+    font-family: var(--sans);
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 9px;
+    border: none;
+    background-color: #2962FF;
+    color: white;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background-color: #1E45BB;
+}
+
+.theme-btn {
+    background-color: transparent;
+    border: 1px solid #555;
+    color: inherit;
+}
+
+.theme-btn:hover {
+    background-color: rgba(128, 128, 128, 0.2);
+}
+
+/* Chart Container */
+.chart-container {
+    flex-grow: 1; /* Takes up remaining height */
+    position: relative;
+    width: 100%;
+}

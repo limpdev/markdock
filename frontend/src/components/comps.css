@@ -1,0 +1,86 @@
+.titlebar {
+    height: 32px; /* Standard titlebar height */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none; /* Prevent text selection */
+    flex-shrink: 0; /* Prevent shrinking when app content overflows */
+    transition: background-color 0.2s, color 0.2s;
+    z-index: 9999;
+}
+
+/* --- Theming --- */
+.titlebar-dark {
+    background-color: #0F0F0F; /* Matches your chart bg */
+    color: #e0e0e0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0);
+}
+
+.titlebar-light {
+    background-color: #FFFFFF;
+    color: #333333;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* --- Drag Region --- */
+.titlebar-drag-region {
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    
+    /* THE MAGIC WAILS PROPERTY */
+    --wails-draggable: drag;
+}
+
+.app-icon {
+    display: flex;
+    align-items: center;
+    color: #2962FF; /* TradingView Blue */
+}
+
+/* --- Window Controls --- */
+.window-controls {
+    display: flex;
+    height: 100%;
+    /* Prevent dragging when clicking buttons */
+    --wails-draggable: no-drag; 
+}
+
+.control-btn {
+    background: transparent;
+    border: none;
+    height: 100%;
+    width: 46px; /* Windows 10/11 standard width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: inherit;
+    transition: background-color 0.2s;
+    outline: none;
+}
+
+/* Hover Effects */
+.titlebar-dark .control-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.titlebar-light .control-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Close Button Special Styling */
+.control-btn.close-btn:hover {
+    background-color: #E81123 !important;
+    color: white !important;
+}
+
+.app-title {
+    font-family: "Symbols Nerd Font", sans-serif;
+}
