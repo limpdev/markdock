@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react'
 import './App.css'
 import AdvancedChart from './components/AdvancedChart'
 import Screener from './components/Screener'
+import News from './components/News'
 import TitleBar from './components/Titlebar'
+import { SolidSearch } from './components/svg/Query'
+import { GalaChart } from './components/svg/Chart'
 
 import { LoadSettings, SaveSettings } from '../wailsjs/go/main/App'
 
@@ -33,8 +36,11 @@ function App () {
     SaveSettings(symbol, newTheme)
   }
 
-  const toggleView = () => {
-    setView(view === 'chart' ? 'screener' : 'chart')
+  const cycleView = () => {
+    const views = ['chart', 'screener', 'news']
+    const currentIndex = views.indexOf(view)
+    const nextIndex = (currentIndex + 1) % views.length
+    setView(views[nextIndex])
   }
 
   if (!isLoaded) return <div className='loading'></div>
@@ -53,16 +59,16 @@ function App () {
             value={tempSymbol}
             onChange={e => setTempSymbol(e.target.value.toUpperCase())}
             onKeyDown={e => e.key === 'Enter' && handleApply()}
-            disabled={view === 'screener'}
+            disabled={view === 'searchSym'}
           />
-          <button onClick={handleApply} disabled={view === 'screener'}>
-           󰀫  
+          <button onClick={handleApply} disabled={view === 'searchSym'}>
+            <SolidSearch />
           </button>
         </div>
 
         <div className='actions'>
-          <button className='view-btn' onClick={toggleView}>
-            {view === 'chart' ? '' : 'Chart'}
+          <button className='view-btn' onClick={cycleView}>
+            <GalaChart />
           </button>
           <button className='theme-btn' onClick={toggleTheme}>
             {theme === 'dark' ? '' : ''}
@@ -72,11 +78,9 @@ function App () {
 
       {/* 3. Main Content Area */}
       <div className='chart-container'>
-        {view === 'chart' ? (
-          <AdvancedChart symbol={symbol} theme={theme} />
-        ) : (
-          <Screener theme={theme} />
-        )}
+        {view === 'chart' && <AdvancedChart symbol={symbol} theme={theme} />}
+        {view === 'screener' && <Screener theme={theme} />}
+        {view === 'news' && <News symbol={symbol} theme={theme} />}
       </div>
     </div>
   )
